@@ -26,23 +26,19 @@ main{
   margin-top: 100px;
 }
 .navbar {
-  background: rgba(0, 0, 0, 0.1);
   display: flex;
-  align-items: center;
+  flex-direction: column; /* stack items vertically */
+  justify-content: flex-start; /* items start at top */
   padding: 20px 40px;
   background-color: transparent;
   position: fixed;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(10px);
-  flex-wrap: nowrap;
-  width: 100%;
   top: 0;
   left: 0;
-  justify-content: space-between;
-  align-items: center;
+  width: 100%;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(10px);
   z-index: 1000;
-  border-radius: 0 0 10px 1opx;
-  transition: transform 0.4s ease,filter 0.4s ease, box-shadow 0.4s ease
+  border-radius: 0 0 10px 1px;
 }
 
 .logo {
@@ -66,10 +62,12 @@ main{
 } 
 
 .nav-links {
-  position: absolute;
-  left: 49%;
+  order: 1; /* links stay at top */
+  position: relative;
+  left: 50%;
   transform: translateX(-50%);
   display: flex;
+  margin-bottom: auto; /* push login button to bottom */
 }
 
 
@@ -98,9 +96,11 @@ main{
 }
 
 .nav-login {
-  margin-left: auto;
+  order: 2; /* login button comes after nav-links */
+  margin-top: auto; /* pushes button to bottom of navbar */
+  display: flex;
+  justify-content: center; /* center the button horizontally */
 }
-
 .login-nav-btn {
   border: 2px solid white;
   padding: 8px 22px;
@@ -124,7 +124,6 @@ main{
   display: flex;
   justify-content: center;
   align-items: center;
-
   opacity: 0;
   pointer-events: none;
   transition: 0.4s ease;
@@ -139,6 +138,7 @@ main{
 .login-container {
   position: relative;
   width: 720px;
+  max-width: 90%;
   height: 520px;
   display: flex;
   justify-content: center;
@@ -147,6 +147,7 @@ main{
 
 .login-card-popup {
   width: 360px;
+  max-width: 100%;
   background: white;
   padding: 60px 40px;
   box-shadow: 0 15px 35px rgba(0,0,0,0.5);
@@ -192,6 +193,7 @@ main{
 .login-side-panel {
   position: absolute;  
   width: 500px;        
+  max-width: 90%;
   height: 600px;     
   background: #311e01;
   color: white;
@@ -199,7 +201,7 @@ main{
   display: flex;
   flex-direction: column;
   justify-content: center;
-  left: 20%;           
+  left: 50%;           
   top: 50%;
   transform: translate(-50%, -50%);
   z-index: 1;          
@@ -516,6 +518,68 @@ main{
   .popup-login-btn {
     padding: 12px;
     font-size: 14px;
+  }
+
+  .login-side-panel {
+    display: none; 
+  }
+
+  .close-btn {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    padding: 15px 20px;
+  }
+
+  .nav-links {
+    order: 1;
+    position: static;
+    transform: none;
+    margin-top: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .nav-login {
+    order: 2;
+    margin-top: 15px;
+  }
+
+  .login-container {
+    width: 90%;
+    height: auto;
+    padding: 20px 0;
+  }
+
+  .login-card-popup {
+    width: 80%;
+    padding: 40px 20px;
+  }
+
+  .login-side-panel {
+    width: 70%;
+    height: auto;
+    padding: 40px 20px;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%, -40%);
+  }
+}
+
+@media (max-width: 480px) {
+  .login-container {
+    width: 95%;
+    height: auto;
+    padding: 10px 0;
+  }
+
+  .login-card-popup {
+    width: 90%;
+    padding: 30px 15px;
   }
 
   .login-side-panel {

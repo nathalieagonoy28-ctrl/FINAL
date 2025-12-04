@@ -38,6 +38,7 @@ body {
   z-index: 1000;
   border-radius: 0 0 10px 1opx;
   transition: transform 0.4s ease,filter 0.4s ease, box-shadow 0.4s ease
+  
 }
 
 .logo {
